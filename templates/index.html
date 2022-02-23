@@ -1,221 +1,246 @@
-<!Doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-            integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
-            crossorigin="anonymous">
+    <title>SW사관학교 정글 | 간단메모</title>
 
-        <!-- JS -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-            crossorigin="anonymous"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous">
+    </script>
 
-        <!-- 구글폰트 -->
-        <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
 
+    <!-- style -->
+    <style type="text/css">
+        * {
+            font-family: "Stylish", sans-serif;
+        }
 
-        <title>SW사관학교 정글 | 나홀로 메모장</title>
+        .wrap {
+            width: 1400px;
+            margin: auto;
+        }
 
-        <!-- style -->
-        <style type="text/css">
-            * {
-                font-family: "Stylish", sans-serif;
-            }
+        input {
+            margin: 1px;
+        }
 
-            .wrap {
-                width: 900px;
-                margin: auto;
-            }
+        .noSelect {
+            -ms-user-select: none;
+            -moz-user-select: -moz-none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
 
-            .comment {
-                color: blue;
-                font-weight: bold;
-            }
+        .form-control {
+            border: 1px solid #808080;
+            font-size: 23px;
+            margin-bottom: 15px;
+        }
 
-            #post-box {
-                width: 500px;
-                margin: 20px auto;
-                padding: 50px;
-                border: black solid;
-                border-radius: 5px;
-            }
-        </style>
-        <script>
-            
-            function openClose() {
-                // id 값 post-box의 display 값이 block 이면(= 눈에 보이면)
-                if ($("#post-box").css("display") == "block") {
-                    // post-box를 가리고
-                    $("#post-box").hide();
-                    // 다시 버튼을 클릭하면, 박스 열기를 할 수 있게 텍스트 바꿔두기
-                    $("#btn-post-box").text("포스팅 박스 열기");
-                } else {
-                    // 아니면(눈에 보이지 않으면) post-box를 펴라
-                    $("#post-box").show();
-                    // 다시 버튼을 클릭하면, 박스 닫기를 할 수 있게 텍스트 바꿔두기
-                    $("#btn-post-box").text("포스팅 박스 닫기");
+        .form-control:focus {
+            border-color: #000000;
+            border: 2px solid #000000;
+            box-shadow: none;
+        }
+
+        button {
+            margin: 1px;
+        }
+
+        .btn {
+            font-weight: bold;
+        }
+
+        .card-text {
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="jumbotron">
+
+            <div class="col-lg-5" style="margin-bottom:20px; margin-top:20px">
+                <p class='noSelect' style="font-size: 50px;">나홀로메모장
+                    <span class='noSelect' style="background: #6A757E; padding: 8px 15px 8px 15px; font-size: 38px;
+                    font-weight: bold; color: #FFFFFF; border-radius: 5px;">
+                        ver2.0</span></p>
+            </div>
+
+            <div id="memoForm" style="margin-top: 20px;" class="col-lg-5">
+                <div>
+                    <input type="text" class="form-control" id="memo-title" placeholder="메모 제목을 입력하세요" />
+                </div>
+                <div>
+                    <textarea class="form-control" id="memo-content" rows="3" placeholder="내용을 입력하세요"></textarea>
+                </div>
+                <div>
+                    <button onclick="saveBTN()" type="submit" class="btn btn-primary btn-lg"
+                        style="font-weight: normal;">저장하기</button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-------------------------------------- 메모카드가 들어갈 곳 ------------------------------------------>
+        <div id="card-list" class="card-columns">
+
+        </div>
+    </div>
+</body>
+
+<!--------------------------------------------------- 자바스크립트 함수 시작------------------------------------------------->
+<script type="text/javascript">
+    // 처음 카드 호출
+    function showCards() {
+        $.ajax({
+            type: "GET", // GET 방식으로 요청하겠다.
+            url: "/memo", // /memo라는 url에 요청하겠다.
+            data: {},
+            success: function (response) {
+                // 메모를 DB에서 불러와서 저장하고 for문으로 memos에 담아둔다.
+                let memos = response["memos"];
+                for (let i = 0; i < memos.length; i++) {
+                    makeCards(memos[i]["title"], memos[i]["contents"], i);
                 }
             }
-            
-            function postArticle() {
-                // 1. 유저가 입력한 데이터를 #post-url과 #post-comment에서 가져오기
-                let url = $("#post-url").val();
-                let comment = $("#post-comment").val();
+        })
+    }
 
-                // 2. memo에 POST 방식으로 메모 생성 요청하기
-                $.ajax({
-                    type: "POST", // POST 방식으로 요청하겠다.
-                    url: "/memo", // /memo라는 url에 요청하겠다.
-                    data: { url_give: url, comment_give: comment}, // 데이터를 주는 방법
-                    success: function(response){ // 성공하면
+    // 담아둔 memos를 가지고 html 삽입해서 카드 만들기
+    function makeCards(title, contents, cardNum) {
+        let temp_html = `
+                <div class="card" id="card-${cardNum}">
+                <div class="card-body">
+                    <h4 class="card-title">${title}</h4>
+                    <div class="formTitle">
+                        <input style="display: none;" id = "new-title-${cardNum}" type="text" class="form-control" placeholder="제목을 입력하세요" value='${title}'>
+                    </div>
+                    <p class="card-text">${contents}</p>
+                    <div class="formContents">
+                        <textarea style="display: none;" id = "new-text-${cardNum}" class="form-control" rows="2" placeholder="내용을 입력하세요">${contents}</textarea>
+                    </div>
+                    <button type="button" id = "update-${cardNum}" class="btn btn-secondary btn-sm" style="padding: 0px 5px 0px 5px; font-size: 15px;" onclick="memoUpdate(${cardNum})">수정</button>
+                    <button type="button" class="btn btn-dark btn-sm" style="padding: 0px 5px 0px 5px; font-size: 15px;" onclick="memoDelete(${cardNum})">삭제</button>
+                    </div>
+                </div>
+                `;
+        $("#card-list").append(temp_html);
+    }
+
+    $(document).ready(function () {
+        $("#card-list").html("");
+        showCards();
+    });
+
+    //저장하기 버튼
+    function saveBTN() {
+        let title = $('#memo-title').val();
+        let contents = $('#memo-content').val();
+        if (title == "") {
+            alert("제목을 입력해 주세요");
+            return
+        } else if (contents == "") {
+            alert("내용을 입력해 주세요");
+            return
+        }
+
+        $.ajax({
+            type: "POST", // POST 방식으로 요청하겠다.
+            url: "/memo", // /memo라는 url에 요청하겠다.
+            data: {
+                title: title,
+                contents: contents
+            }, // 데이터를 주는 방법
+            success: function (response) { // 성공하면
+                if (response["result"] == "success") {
+                    alert("저장 완료!");
+                    // 완료 시 페이지 새로고침하기
+                    window.location.reload();
+                } else {
+                    alert("문제가 생겼습니다. 다시한번 시도해 주세요!");
+                }
+            }
+        })
+    }
+
+    //메모 개별 수정 및 저장 버튼
+    function memoUpdate(i) {
+        //어떤 메모의 버튼을 눌렀는지 받고 앞에 makeCards 함수에서 개별적으로 넣은 html id를 찾아내서 필요한 정보를 얻는다.
+        let cardSel = $(`#card-${i}`);
+        $(`#update-${i}`).text();
+        // 현재 수정버튼 상태라면 저장으로바꾸고 수정을 하기위한 상태로 바꾼다.
+        if ($(`#update-${i}`).text() == "수정") {
+            $(`#update-${i}`).text('저장');
+            cardSel.find('input').css('display', '')
+            cardSel.find('textarea').css('display', '')
+            cardSel.find('p').css('display', 'none')
+            cardSel.find('h4').css('display', 'none')
+            cardSel.find('button').css('display', 'none')
+            $(`#update-${i}`).attr("class", "btn btn-primary btn-sm");
+            $(`#update-${i}`).css('display', '');
+            // 현재 저장버튼 상태라면 DB로 보내서 업데이트 한다.
+        } else {
+            let title = $(`#new-title-${i}`).val();
+            let contents = $(`#new-text-${i}`).val();
+            $.ajax({
+                type: "POST", // POST 방식으로 요청하겠다.
+                url: "/memoUpdate", // /memoUpdate 라는 url에 요청하겠다.
+                data: {
+                    "title": title,
+                    "contents": contents,
+                    "cardNum": i
+                }, // 데이터를 주는 방법
+                success: function (response) { // 성공하면
                     if (response["result"] == "success") {
-                        alert("포스팅 성공!");
-                                // 3. 성공 시 페이지 새로고침하기
+                        alert("수정 완료!");
+                        // 완료 시 페이지 새로고침하기
                         window.location.reload();
                     } else {
-                        alert("서버 오류!")
+                        alert("문제가 생겼습니다. 다시한번 시도해 주세요!");
                     }
-                    }
-                })
-            }
-                        
-            function postArticle2() {
-            alert("test");
-            }    
-
-            function showArticles() {
-                $.ajax({
-                    type: "GET",
-                    url: "/memo",
-                    data: {},
-                    success: function(response){
-                    let articles = response["articles"];
-                    for (let i = 0; i < articles.length; i++) {
-                        makeCard(articles[i]["image"], articles[i]["url"], articles[i]["title"], articles[i]["desc"], articles[i]["comment"])
-                    }
-                    }
-                })
                 }
+            })
+        }
+    }
 
-            function makeCard(image, url, title, desc, comment) {
-                let temp_html = `<div class="card">
-                                    <img class="card-img-top" src="${image}" alt="Card image cap">
-                                    <div class="card-body">
-                                    <a href="${url}" target="_blank" class="card-title">${title}</a>
-                                    <p class="card-text">${desc}</p>
-                                    <p class="card-text comment">${comment}</p>
-                                    </div>
-                                </div>`;
-                $("#cards-box").append(temp_html);
+    //메모 삭제 버튼
+    function memoDelete(i) {
+        $.ajax({
+            type: "POST", // POST 방식으로 요청하겠다.
+            url: "/memoDelete", // /memoDelete 라는 url에 요청하겠다.
+            data: {
+                "cardNum": i
+            },
+            success: function (response) { // 성공하면
+                if (response["result"] == "success") {
+                    alert("삭제 완료!");
+                    // 완료 시 페이지 새로고침하기
+                    window.location.reload();
+                } else {
+                    alert("문제가 생겼습니다. 다시한번 시도해 주세요!");
+                }
             }
-
-            $(document).ready(function () {
-            $("#cards-box").html("");
-            showArticles();
-            });
-        </script>
-
-    </head>
-
-    <body>
-        <div class="wrap">
-            <div class="jumbotron">
-                <h1 class="display-4">나홀로 링크 메모장!</h1>
-                <p class="lead">중요한 링크를 저장해두고, 나중에 볼 수 있는 공간입니다</p>
-                <hr class="my-4">
-                <p class="lead">
-                    <button onclick="openClose()" id="btn-post-box" type="button" class="btn btn-primary">포스팅 박스 열기
-                    </button>
-                </p>
-            </div>
-            <div id="post-box" class="form-post" style="display:none">
-                <div>
-                    <div class="form-group">
-                        <label for="post-url">아티클 URL</label>
-                        <input id="post-url" class="form-control" placeholder="">
-                    </div>
-                    <div class="form-group">
-                        <label for="post-comment">간단 코멘트</label>
-                        <textarea id="post-comment" class="form-control" rows="2"></textarea>
-                    </div>
-                    <button type="button" class="btn btn-primary" onclick="postArticle()">기사저장</button>
-                    <button type="button" class="btn btn-primary" onclick="postArticle2()">기사저장</button>
-                </div>
-            </div>
-        <div>
-            dsalkfsld
-        </div>
-            <div id="cards-box" class="card-columns">
-                <div class="card">
-                    <img class="card-img-top"
-                         src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
-                         alt="Card image cap">
-                    <div class="card-body">
-                        <a href="#" class="card-title">여기 기사 제목이 들어가죠</a>
-                        <p class="card-text">기사의 요약 내용이 들어갑니다. 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산...</p>
-                        <p class="card-text comment">여기에 코멘트가 들어갑니다.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img class="card-img-top"
-                         src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
-                         alt="Card image cap">
-                    <div class="card-body">
-                        <a href="#" class="card-title">여기 기사 제목이 들어가죠</a>
-                        <p class="card-text">기사의 요약 내용이 들어갑니다. 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산...</p>
-                        <p class="card-text comment">여기에 코멘트가 들어갑니다.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img class="card-img-top"
-                         src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
-                         alt="Card image cap">
-                    <div class="card-body">
-                        <a href="#" class="card-title">여기 기사 제목이 들어가죠</a>
-                        <p class="card-text">기사의 요약 내용이 들어갑니다. 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산...</p>
-                        <p class="card-text comment">여기에 코멘트가 들어갑니다.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img class="card-img-top"
-                         src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
-                         alt="Card image cap">
-                    <div class="card-body">
-                        <a href="#" class="card-title">여기 기사 제목이 들어가죠</a>
-                        <p class="card-text">기사의 요약 내용이 들어갑니다. 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산...</p>
-                        <p class="card-text comment">여기에 코멘트가 들어갑니다.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img class="card-img-top"
-                         src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
-                         alt="Card image cap">
-                    <div class="card-body">
-                        <a href="#" class="card-title">여기 기사 제목이 들어가죠</a>
-                        <p class="card-text">기사의 요약 내용이 들어갑니다. 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산...</p>
-                        <p class="card-text comment">여기에 코멘트가 들어갑니다.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img class="card-img-top"
-                         src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
-                         alt="Card image cap">
-                    <div class="card-body">
-                        <a href="#" class="card-title">여기 기사 제목이 들어가죠</a>
-                        <p class="card-text">기사의 요약 내용이 들어갑니다. 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산...</p>
-                        <p class="card-text comment">여기에 코멘트가 들어갑니다.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </body>
+        })
+    }
+</script>
 
 </html>
