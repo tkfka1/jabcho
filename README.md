@@ -4,4 +4,4 @@
 #flask ajax MongoDB CRUD 
 # 나홀로 메모장
 
-#3.34.185.1
+http://3.34.185.1
